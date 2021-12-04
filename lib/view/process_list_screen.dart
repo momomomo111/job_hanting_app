@@ -20,58 +20,59 @@ class ProcessListScreen extends StatelessWidget {
         shrinkWrap: true,
         itemCount: list.length,
         itemBuilder: (BuildContext context, int index) {
-          return Center(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 4.0, horizontal: 16.0),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          spreadRadius: 0.1,
-                          blurRadius: 10.0,
-                          offset: Offset(5, 5),
-                        ),
-                      ],
-                    ),
-                    width: double.infinity,
-                    height: 100,
-                    child: Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              list[index][0],
-                              style: const TextStyle(
-                                fontSize: 16,
-                              ),
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
+                child: Container(
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black12,
+                        spreadRadius: 0.1,
+                        blurRadius: 10.0,
+                        offset: Offset(5, 5),
+                      ),
+                    ],
+                  ),
+                  width: double.infinity,
+                  height: 100,
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            list[index][0],
+                            style: const TextStyle(
+                              fontSize: 16,
                             ),
-                            SizedBox(
-                              width: double.infinity,
-                              child: Padding(
-                                padding: const EdgeInsets.only(right: 16),
-                                child: Text(
-                                  list[index][1],
-                                  textAlign: TextAlign.right,
-                                  style: const TextStyle(
-                                    fontSize: 24,
-                                  ),
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: Text(
+                                list[index][1],
+                                textAlign: TextAlign.right,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           );
         },
       ),

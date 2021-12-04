@@ -3,141 +3,53 @@ import 'package:flutter/material.dart';
 class CompanyAddScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Process List Screen',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: SizedBox(
-        width: 360,
-        height: 700,
-        child: Material(
-          color: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.only(
-              top: 48,
-              bottom: 320,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(
-                  width: 129,
-                  height: 34,
-                  child: Text(
-                    "選考企業追加",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 42.67),
-                const SizedBox(
-                  width: 289,
-                  height: 58,
-                  child: Text(
-                    "気になる企業/選考している\n企業を選択してください",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontFamily: "Roboto",
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 42.67),
-                Container(
-                  width: 328,
-                  height: 72,
-                  padding: const EdgeInsets.only(
-                    left: 16,
-                    right: 12,
-                    top: 15,
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        "企業名を追加してください",
-                        style: TextStyle(
-                          color: Color(0x99000000),
-                          fontSize: 12,
-                        ),
-                      ),
-                      SizedBox(width: 39.50),
-                      Text(
-                        "企業名",
-                        style: TextStyle(
-                          color: Color(0xdd000000),
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 42.67),
-                SizedBox(
-                  width: 146,
-                  height: 38,
-                  child: Material(
-                    color: const Color(0xff6200ee),
-                    borderRadius: BorderRadius.circular(20),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                        left: 8,
-                        right: 6,
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                left: 6,
-                                right: 8,
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Expanded(
-                                    child: SizedBox(
-                                      child: Text(
-                                        "追加",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 14,
-                                          fontFamily: "Roboto",
-                                          fontWeight: FontWeight.w500,
-                                          letterSpacing: 1.25,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+    return Scaffold(
+      appBar: AppBar(title: const Text("選考企業追加")),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          const Text(
+            "気になる企業 / 選考している企業\nを選択してください",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
             ),
           ),
-        ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextFormField(
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: "企業名",
+                labelText: "企業名",
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: SizedBox(
+                width: 200,
+                height: 52,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: const Text(
+                    "決定",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.purple[800],
+                    shape: const StadiumBorder(),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

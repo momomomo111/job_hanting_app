@@ -4,6 +4,7 @@ class TitleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -11,9 +12,7 @@ class TitleScreen extends StatelessWidget {
             const Text(
               "浅沼元晴の\n選考企業一覧",
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 34
-              ),
+              style: TextStyle(fontSize: 34),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
