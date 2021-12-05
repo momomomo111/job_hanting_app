@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class TitleScreen extends StatelessWidget {
   @override
@@ -20,7 +21,9 @@ class TitleScreen extends StatelessWidget {
                 SizedBox(
                   width: 300,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.toNamed('/process-list');
+                    },
                     child: const Text(
                       "企業の方はこちらから",
                       style: TextStyle(color: Colors.white),
@@ -37,7 +40,9 @@ class TitleScreen extends StatelessWidget {
                 SizedBox(
                   width: 300,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.toNamed('/process-list');
+                    },
                     child: const Text(
                       "就活生の方はこちらから",
                       style: TextStyle(color: Colors.white),
