@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:job_hanting_app/binding/binding.dart';
 import 'package:job_hanting_app/view/company_add_screen.dart';
 import 'package:job_hanting_app/view/process_list_screen.dart';
 import 'package:job_hanting_app/view/process_select_screen.dart';
@@ -14,7 +15,7 @@ void main() {
     ),
     initialRoute: '/title',
     getPages: [
-      GetPage(name: '/title', page: () => TitleScreen()),
+      GetPage(name: '/title', page: () => TitleScreen(), binding: Bind()),
       GetPage(name: '/process-list', page: () => ProcessListScreen()),
       GetPage(name: '/process-select', page: () => ProcessSelectScreen()),
       GetPage(name: '/company-add', page: () => CompanyAddScreen()),

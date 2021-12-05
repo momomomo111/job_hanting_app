@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:job_hanting_app/controller/user_controller.dart';
 
 class TitleScreen extends StatelessWidget {
   @override
@@ -22,6 +23,7 @@ class TitleScreen extends StatelessWidget {
                   width: 300,
                   child: ElevatedButton(
                     onPressed: () {
+                      Get.find<UserController>().setOther();
                       Get.toNamed('/process-list');
                     },
                     child: const Text(
@@ -41,6 +43,7 @@ class TitleScreen extends StatelessWidget {
                   width: 300,
                   child: ElevatedButton(
                     onPressed: () {
+                      Get.find<UserController>().setStudent();
                       Get.toNamed('/process-list');
                     },
                     child: const Text(
