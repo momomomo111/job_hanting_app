@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProcessSelectScreen extends StatelessWidget {
   @override
@@ -75,7 +76,9 @@ class ProcessSelectScreen extends StatelessWidget {
                 width: 200,
                 height: 52,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.back();
+                  },
                   child: const Text(
                     "決定",
                     style: TextStyle(color: Colors.white),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProcessListScreen extends StatelessWidget {
   @override
@@ -51,17 +52,22 @@ class ProcessListScreen extends StatelessWidget {
                               fontSize: 16,
                             ),
                           ),
-                          SizedBox(
-                            width: double.infinity,
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 16),
-                              child: Text(
-                                list[index][1],
-                                textAlign: TextAlign.right,
-                                style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
+                          GestureDetector(
+                            onTap: () {
+                              Get.toNamed('/process-select');
+                            },
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 16),
+                                child: Text(
+                                  list[index][1],
+                                  textAlign: TextAlign.right,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ),
                             ),
@@ -77,7 +83,9 @@ class ProcessListScreen extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton.large(
-        onPressed: () {},
+        onPressed: () {
+          Get.toNamed('/company-add');
+        },
         child: const Icon(
           Icons.playlist_add_outlined,
         ),
