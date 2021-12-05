@@ -27,36 +27,36 @@ class ProcessListScreen extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
-                child: Container(
-                  decoration: const BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black12,
-                        spreadRadius: 0.1,
-                        blurRadius: 10.0,
-                        offset: Offset(5, 5),
-                      ),
-                    ],
-                  ),
-                  width: double.infinity,
-                  height: 100,
-                  child: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            list[index][0],
-                            style: const TextStyle(
-                              fontSize: 16,
+                child: InkWell(
+                  onTap: () {
+                    Get.toNamed('/process-select');
+                  },
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          spreadRadius: 0.1,
+                          blurRadius: 10.0,
+                          offset: Offset(5, 5),
+                        ),
+                      ],
+                    ),
+                    width: double.infinity,
+                    height: 100,
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              list[index][0],
+                              style: const TextStyle(
+                                fontSize: 16,
+                              ),
                             ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Get.toNamed('/process-select');
-                            },
-                            child: SizedBox(
+                            SizedBox(
                               width: double.infinity,
                               child: Padding(
                                 padding: const EdgeInsets.only(right: 16),
@@ -71,8 +71,8 @@ class ProcessListScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
