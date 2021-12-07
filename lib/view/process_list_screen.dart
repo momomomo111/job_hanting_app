@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:job_hanting_app/controller/process_list_controller.dart';
+import 'package:job_hanting_app/controller/process_controller.dart';
 import 'package:job_hanting_app/controller/user_controller.dart';
 
 class ProcessListScreen extends StatelessWidget {
-  final ProcessListController _processListController = Get.find();
+  final ProcessController _processController = Get.find();
   final UserController _userListController = Get.find();
 
   @override
@@ -14,7 +14,7 @@ class ProcessListScreen extends StatelessWidget {
       body: Obx(
         () => ListView.builder(
           shrinkWrap: true,
-          itemCount: _processListController.myProcessList.length,
+          itemCount: _processController.myProcessList.length,
           itemBuilder: (BuildContext context, int index) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -27,8 +27,7 @@ class ProcessListScreen extends StatelessWidget {
                       if (_userListController.userType.value ==
                           UserType.student) {
                         Get.toNamed('/process-select',
-                            arguments:
-                                _processListController.myProcessList[index][0]);
+                            arguments: index.toString());
                       }
                     },
                     child: Container(
@@ -51,7 +50,7 @@ class ProcessListScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                _processListController.myProcessList[index][0],
+                                _processController.myProcessList[index].company,
                                 style: const TextStyle(
                                   fontSize: 16,
                                 ),
@@ -61,8 +60,8 @@ class ProcessListScreen extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.only(right: 16),
                                   child: Text(
-                                    _processListController.myProcessList[index]
-                                        [1],
+                                    _processController
+                                        .myProcessList[index].process,
                                     textAlign: TextAlign.right,
                                     style: const TextStyle(
                                       color: Colors.black,
