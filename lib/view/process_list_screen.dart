@@ -10,14 +10,43 @@ class ProcessListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("選考企業一覧")),
+      appBar: AppBar(
+        title: const Text("選考企業一覧"),
+        actions: <Widget>[
+          Obx(
+            () => Visibility(
+              visible: !_processController.deleteMode.value,
+              child: IconButton(
+                onPressed: () {
+                  _processController.deleteMode.value = true;
+                },
+                icon: const Icon(
+                  Icons.delete,
+                ),
+              ),
+            ),
+          ),
+          Obx(
+            () => Visibility(
+              visible: _processController.deleteMode.value,
+              child: IconButton(
+                onPressed: () {
+                  _processController.deleteMode.value = false;
+                },
+                icon: const Icon(
+                  Icons.clear,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
       body: Obx(
         () => ListView.builder(
           shrinkWrap: true,
           itemCount: _processController.myProcessList.length,
           itemBuilder: (BuildContext context, int index) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+            return Row(
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(
@@ -41,7 +70,7 @@ class ProcessListScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      width: double.infinity,
+                      // width: double.infinity,
                       height: 100,
                       child: Card(
                         child: Padding(
@@ -56,7 +85,7 @@ class ProcessListScreen extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                width: double.infinity,
+                                // width: double.infinity,
                                 child: Padding(
                                   padding: const EdgeInsets.only(right: 16),
                                   child: Text(
@@ -74,6 +103,19 @@ class ProcessListScreen extends StatelessWidget {
                             ],
                           ),
                         ),
+                      ),
+                    ),
+                  ),
+                ),
+                Obx(
+                  () => Visibility(
+                    visible: _processController.deleteMode.value,
+                    child: IconButton(
+                      onPressed: () {
+                        _processController.deleteMyProcess(index);
+                      },
+                      icon: const Icon(
+                        Icons.remove_circle,
                       ),
                     ),
                   ),

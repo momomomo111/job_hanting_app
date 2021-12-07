@@ -36,6 +36,8 @@ class ProcessController extends GetxController {
 
   final selectedProcess = '0'.obs;
 
+  final deleteMode = false.obs;
+
   void setCompany(company) =>
       myProcessList.add(ProcessPair(company: company, process: "未エントリー"));
 
@@ -47,6 +49,8 @@ class ProcessController extends GetxController {
             process: processPattern[process]));
     myProcessList.removeAt(index + 1);
   }
+
+  void deleteMyProcess(index) => myProcessList.removeAt(index);
 
   void handleRadio(value) => selectedProcess(value);
 }
