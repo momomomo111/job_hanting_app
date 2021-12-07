@@ -16,9 +16,15 @@ void main() {
     initialRoute: '/title',
     getPages: [
       GetPage(name: '/title', page: () => TitleScreen(), binding: Bind()),
-      GetPage(name: '/process-list', page: () => ProcessListScreen()),
+      GetPage(
+          name: '/process-list',
+          page: () => ProcessListScreen(),
+          binding: Bind()),
       GetPage(name: '/process-select', page: () => ProcessSelectScreen()),
-      GetPage(name: '/company-add', page: () => CompanyAddScreen()),
+      GetPage(
+          name: '/company-add',
+          page: () => CompanyAddScreen(),
+          binding: Bind()),
     ],
   ));
 }

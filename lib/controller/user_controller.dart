@@ -5,7 +5,7 @@ enum UserType { student, other }
 class UserController extends GetxController {
   var userType = UserType.student.obs;
 
-  void setStudent() => userType.value = UserType.student;
+  void setStudent() => userType(UserType.student);
 
-  void setOther() => userType.value = UserType.other;
+  void setOther() => userType(UserType.other);
 }

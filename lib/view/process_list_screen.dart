@@ -1,37 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:job_hanting_app/controller/process_list_controller.dart';
 import 'package:job_hanting_app/controller/user_controller.dart';
 
 class ProcessListScreen extends StatelessWidget {
+  final ProcessListController _processListController = Get.find();
+  final UserController _userListController = Get.find();
+
   @override
   Widget build(BuildContext context) {
-    var list = [
-      ["サイバーエージェント", "未エントリー"],
-      ["マネーフォワード", "一次選考通過"],
-      ["グリー", "二次選考通過"],
-      ["グリー", "二次選考通過"],
-      ["グリー", "二次選考通過"],
-      ["グリー", "二次選考通過"],
-      ["グリー", "二次選考通過"],
-      ["グリー", "二次選考通過"],
-      ["グリー", "二次選考通過"],
-    ];
     return Scaffold(
       appBar: AppBar(title: const Text("選考企業一覧")),
-      body: ListView.builder(
-        shrinkWrap: true,
-        itemCount: list.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
-                child: GetBuilder<UserController>(
-                  builder: (_) => InkWell(
+      body: Obx(
+        () => ListView.builder(
+          shrinkWrap: true,
+          itemCount: _processListController.processList.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 4.0, horizontal: 16.0),
+                  child: InkWell(
                     onTap: () {
-                      if (_.userType.value == UserType.student) {
+                      if (_userListController.userType.value ==
+                          UserType.student) {
                         Get.toNamed('/process-select');
                       }
                     },
@@ -55,7 +49,7 @@ class ProcessListScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                list[index][0],
+                                _processListController.processList[index][0],
                                 style: const TextStyle(
                                   fontSize: 16,
                                 ),
@@ -65,7 +59,8 @@ class ProcessListScreen extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.only(right: 16),
                                   child: Text(
-                                    list[index][1],
+                                    _processListController.processList[index]
+                                        [1],
                                     textAlign: TextAlign.right,
                                     style: const TextStyle(
                                       color: Colors.black,
@@ -82,21 +77,19 @@ class ProcessListScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),
-            ],
-          );
-        },
+              ],
+            );
+          },
+        ),
       ),
-      floatingActionButton: GetBuilder<UserController>(
-        builder: (_) => Visibility(
-          visible: _.userType.value == UserType.student,
-          child: FloatingActionButton.large(
-            onPressed: () {
-              Get.toNamed('/company-add');
-            },
-            child: const Icon(
-              Icons.playlist_add_outlined,
-            ),
+      floatingActionButton: Visibility(
+        visible: _userListController.userType.value == UserType.student,
+        child: FloatingActionButton.large(
+          onPressed: () {
+            Get.toNamed('/company-add');
+          },
+          child: const Icon(
+            Icons.playlist_add_outlined,
           ),
         ),
       ),
