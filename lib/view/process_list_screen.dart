@@ -15,7 +15,8 @@ class ProcessListScreen extends StatelessWidget {
         actions: <Widget>[
           Obx(
             () => Visibility(
-              visible: !_processController.deleteMode.value,
+              visible: !_processController.deleteMode.value &&
+                  _userListController.userType.value == UserType.student,
               child: IconButton(
                 onPressed: () {
                   _processController.deleteMode.value = true;
@@ -28,7 +29,8 @@ class ProcessListScreen extends StatelessWidget {
           ),
           Obx(
             () => Visibility(
-              visible: _processController.deleteMode.value,
+              visible: _processController.deleteMode.value &&
+                  _userListController.userType.value == UserType.student,
               child: IconButton(
                 onPressed: () {
                   _processController.deleteMode.value = false;
@@ -46,36 +48,35 @@ class ProcessListScreen extends StatelessWidget {
           shrinkWrap: true,
           itemCount: _processController.myProcessList.length,
           itemBuilder: (BuildContext context, int index) {
-            return Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 4.0, horizontal: 16.0),
-                  child: InkWell(
-                    onTap: () {
-                      if (_userListController.userType.value ==
-                          UserType.student) {
-                        Get.toNamed('/process-select',
-                            arguments: index.toString());
-                      }
-                    },
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            spreadRadius: 0.1,
-                            blurRadius: 10.0,
-                            offset: Offset(5, 5),
-                          ),
-                        ],
+            return Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
+              child: InkWell(
+                onTap: () {
+                  if (_userListController.userType.value == UserType.student) {
+                    Get.toNamed('/process-select', arguments: index.toString());
+                  }
+                },
+                child: Container(
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black12,
+                        spreadRadius: 0.1,
+                        blurRadius: 10.0,
+                        offset: Offset(5, 5),
                       ),
-                      // width: double.infinity,
-                      height: 100,
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Column(
+                    ],
+                  ),
+                  width: double.infinity,
+                  height: 100,
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
@@ -84,43 +85,46 @@ class ProcessListScreen extends StatelessWidget {
                                   fontSize: 16,
                                 ),
                               ),
-                              SizedBox(
-                                // width: double.infinity,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 16),
-                                  child: Text(
-                                    _processController
-                                        .myProcessList[index].process,
-                                    textAlign: TextAlign.right,
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
+                              Align(
+                                alignment: Alignment.bottomRight,
+                                child: SizedBox(
+                                  // width: double.infinity,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 16),
+                                    child: Text(
+                                      _processController
+                                          .myProcessList[index].process,
+                                      textAlign: TextAlign.right,
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ],
                           ),
-                        ),
+                          Obx(
+                            () => Visibility(
+                              visible: _processController.deleteMode.value,
+                              child: IconButton(
+                                onPressed: () {
+                                  _processController.deleteMyProcess(index);
+                                },
+                                icon: const Icon(
+                                  Icons.remove_circle,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
-                Obx(
-                  () => Visibility(
-                    visible: _processController.deleteMode.value,
-                    child: IconButton(
-                      onPressed: () {
-                        _processController.deleteMyProcess(index);
-                      },
-                      icon: const Icon(
-                        Icons.remove_circle,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             );
           },
         ),
