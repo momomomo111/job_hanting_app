@@ -27,7 +27,7 @@ class TitleScreen extends StatelessWidget {
                       Get.toNamed('/process-list');
                     },
                     child: const Text(
-                      "企業の方はこちらから",
+                      "閲覧する方はこちらから",
                       style: TextStyle(color: Colors.white),
                     ),
                     style: ElevatedButton.styleFrom(
