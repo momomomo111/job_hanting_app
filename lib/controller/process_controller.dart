@@ -32,15 +32,21 @@ class ProcessController extends GetxController {
     "最終面接結果待ち",
     "内定/内々定",
     "お見送り"
-  ].obs;
+  ];
 
   final selectedProcess = '0'.obs;
 
   void setCompany(company) =>
       myProcessList.add(ProcessPair(company: company, process: "未エントリー"));
 
-  void setProcess(index, process) =>
-      myProcessList[index].process = processPattern[process];
+  void setProcess(index, process) {
+    myProcessList.insert(
+        index,
+        ProcessPair(
+            company: myProcessList[index].company,
+            process: processPattern[process]));
+    myProcessList.removeAt(index + 1);
+  }
 
   void handleRadio(value) => selectedProcess(value);
 }
