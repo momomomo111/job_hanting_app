@@ -1,25 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:job_hanting_app/controller/process_controller.dart';
 
 class ProcessSelectScreen extends StatelessWidget {
+  final ProcessController _processController = Get.find();
+
   @override
   Widget build(BuildContext context) {
-    var list = [
-      "未エントリー",
-      "書類選考結果待ち",
-      "書類選考通過",
-      "一次面接結果待ち",
-      "一次面接通過",
-      "二次面接結果待ち",
-      "二次面接通過",
-      "最終面接結果待ち",
-      "内定/内々定",
-      "内定/内々定",
-      "内定/内々定",
-      "内定/内々定",
-      "内定/内々定",
-      "お見送り"
-    ];
+    final companyIndex = int.parse(Get.arguments);
+    final companyName = _processController.myProcessList[companyIndex].company;
     return Scaffold(
       appBar: AppBar(title: const Text("選考状況選択")),
       body: Column(
@@ -38,9 +27,9 @@ class ProcessSelectScreen extends StatelessWidget {
           const SizedBox(
             height: 32,
           ),
-          const Text(
-            "〇〇株式会社",
-            style: TextStyle(
+          Text(
+            companyName,
+            style: const TextStyle(
               fontSize: 16,
             ),
           ),
@@ -50,20 +39,22 @@ class ProcessSelectScreen extends StatelessWidget {
           Expanded(
             child: ListView.builder(
               shrinkWrap: true,
-              itemCount: list.length,
+              itemCount: _processController.processPattern.length,
               itemBuilder: (BuildContext context, int index) {
-                return RadioListTile(
-                  title: Text(
-                    list[index],
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
+                return Obx(
+                  () => RadioListTile(
+                    title: Text(
+                      _processController.processPattern[index],
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
+                    value: index.toString(),
+                    onChanged: (value) => _processController.handleRadio(value),
+                    groupValue: _processController.selectedProcess.value,
                   ),
-                  value: null,
-                  onChanged: (void value) {},
-                  groupValue: null,
                 );
               },
             ),
@@ -77,6 +68,8 @@ class ProcessSelectScreen extends StatelessWidget {
                 height: 52,
                 child: ElevatedButton(
                   onPressed: () {
+                    _processController.setProcess(companyIndex,
+                        int.parse(_processController.selectedProcess.value));
                     Get.back();
                   },
                   child: const Text(

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:job_hanting_app/controller/process_controller.dart';
 
 class CompanyAddScreen extends StatelessWidget {
+  final ProcessController _processController = Get.find();
+  final _addCompanyController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,6 +26,7 @@ class CompanyAddScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
+              controller: _addCompanyController,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "企業名",
@@ -38,6 +43,7 @@ class CompanyAddScreen extends StatelessWidget {
                 height: 52,
                 child: ElevatedButton(
                   onPressed: () {
+                    _processController.setCompany(_addCompanyController.text);
                     Get.back();
                   },
                   child: const Text(
