@@ -14,7 +14,7 @@ class ProcessListScreen extends StatelessWidget {
       body: Obx(
         () => ListView.builder(
           shrinkWrap: true,
-          itemCount: _processListController.processList.length,
+          itemCount: _processListController.myProcessList.length,
           itemBuilder: (BuildContext context, int index) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -26,7 +26,9 @@ class ProcessListScreen extends StatelessWidget {
                     onTap: () {
                       if (_userListController.userType.value ==
                           UserType.student) {
-                        Get.toNamed('/process-select');
+                        Get.toNamed('/process-select',
+                            arguments:
+                                _processListController.myProcessList[index][0]);
                       }
                     },
                     child: Container(
@@ -49,7 +51,7 @@ class ProcessListScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                _processListController.processList[index][0],
+                                _processListController.myProcessList[index][0],
                                 style: const TextStyle(
                                   fontSize: 16,
                                 ),
@@ -59,7 +61,7 @@ class ProcessListScreen extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.only(right: 16),
                                   child: Text(
-                                    _processListController.processList[index]
+                                    _processListController.myProcessList[index]
                                         [1],
                                     textAlign: TextAlign.right,
                                     style: const TextStyle(

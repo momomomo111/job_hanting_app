@@ -20,7 +20,10 @@ void main() {
           name: '/process-list',
           page: () => ProcessListScreen(),
           binding: Bind()),
-      GetPage(name: '/process-select', page: () => ProcessSelectScreen()),
+      GetPage(
+          name: '/process-select',
+          page: () => ProcessSelectScreen(),
+          binding: Bind()),
       GetPage(
           name: '/company-add',
           page: () => CompanyAddScreen(),

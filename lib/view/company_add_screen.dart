@@ -44,7 +44,7 @@ class CompanyAddScreen extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     _processListController
-                        .setProcess(_addCompanyController.text);
+                        .setCompany(_addCompanyController.text);
                     Get.back();
                   },
                   child: const Text(

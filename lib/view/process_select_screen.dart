@@ -1,25 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:job_hanting_app/controller/process_list_controller.dart';
 
 class ProcessSelectScreen extends StatelessWidget {
+  final ProcessListController _processListController = Get.find();
+
   @override
   Widget build(BuildContext context) {
-    var list = [
-      "未エントリー",
-      "書類選考結果待ち",
-      "書類選考通過",
-      "一次面接結果待ち",
-      "一次面接通過",
-      "二次面接結果待ち",
-      "二次面接通過",
-      "最終面接結果待ち",
-      "内定/内々定",
-      "内定/内々定",
-      "内定/内々定",
-      "内定/内々定",
-      "内定/内々定",
-      "お見送り"
-    ];
+    final companyName = Get.arguments;
     return Scaffold(
       appBar: AppBar(title: const Text("選考状況選択")),
       body: Column(
@@ -38,34 +26,36 @@ class ProcessSelectScreen extends StatelessWidget {
           const SizedBox(
             height: 32,
           ),
-          const Text(
-            "〇〇株式会社",
-            style: TextStyle(
+          Text(
+            companyName,
+            style: const TextStyle(
               fontSize: 16,
             ),
           ),
           const SizedBox(
             height: 32,
           ),
-          Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: list.length,
-              itemBuilder: (BuildContext context, int index) {
-                return RadioListTile(
-                  title: Text(
-                    list[index],
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
+          Obx(
+            () => Expanded(
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: _processListController.process.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return RadioListTile(
+                    title: Text(
+                      _processListController.process[index],
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                  value: null,
-                  onChanged: (void value) {},
-                  groupValue: null,
-                );
-              },
+                    value: null,
+                    onChanged: (void value) {},
+                    groupValue: null,
+                  );
+                },
+              ),
             ),
           ),
           Align(
