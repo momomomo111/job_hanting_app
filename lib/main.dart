@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:job_hanting_app/binding/binding.dart';
+import 'package:job_hanting_app/google_services.dart';
 import 'package:job_hanting_app/view/company_add_screen.dart';
 import 'package:job_hanting_app/view/process_list_screen.dart';
 import 'package:job_hanting_app/view/process_select_screen.dart';
-import 'package:job_hanting_app/view/title_screen.dart';
 
-Future main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  var firebase = await Firebase.initializeApp();
+  var firebase = await Firebase.initializeApp(
+    options: googleService()
+  );
   runApp(GetMaterialApp(
     theme: ThemeData(
       primarySwatch: Colors.purple,
@@ -18,7 +20,10 @@ Future main() async {
     ),
     initialRoute: '/title',
     getPages: [
-      GetPage(name: '/title', page: () => Center(child: Text(firebase.name)), binding: Bind()),
+      GetPage(
+          name: '/title',
+          page: () => Center(child: Text(firebase.name)),
+          binding: Bind()),
       // GetPage(name: '/title', page: () => TitleScreen(), binding: Bind()),
       GetPage(
           name: '/process-list',
