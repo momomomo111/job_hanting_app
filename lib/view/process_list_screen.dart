@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:job_hanting_app/controller/process_controller.dart';
+import 'package:job_hanting_app/controller/my_process_controller.dart';
 import 'package:job_hanting_app/controller/user_controller.dart';
 
 class ProcessListScreen extends StatelessWidget {
-  final ProcessController _processController = Get.find();
+  final MyProcessController _myProcessController = Get.find();
   final UserController _userListController = Get.find();
 
   @override
@@ -15,11 +15,11 @@ class ProcessListScreen extends StatelessWidget {
         actions: <Widget>[
           Obx(
             () => Visibility(
-              visible: !_processController.deleteMode.value &&
+              visible: !_myProcessController.deleteMode.value &&
                   _userListController.userType.value == UserType.student,
               child: IconButton(
                 onPressed: () {
-                  _processController.deleteMode.value = true;
+                  _myProcessController.deleteMode.value = true;
                 },
                 icon: const Icon(
                   Icons.delete,
@@ -29,11 +29,11 @@ class ProcessListScreen extends StatelessWidget {
           ),
           Obx(
             () => Visibility(
-              visible: _processController.deleteMode.value &&
+              visible: _myProcessController.deleteMode.value &&
                   _userListController.userType.value == UserType.student,
               child: IconButton(
                 onPressed: () {
-                  _processController.deleteMode.value = false;
+                  _myProcessController.deleteMode.value = false;
                 },
                 icon: const Icon(
                   Icons.clear,
@@ -46,7 +46,7 @@ class ProcessListScreen extends StatelessWidget {
       body: Obx(
         () => ListView.builder(
           shrinkWrap: true,
-          itemCount: _processController.myProcessList.length,
+          itemCount: _myProcessController.myProcess.length,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
               padding:
@@ -80,7 +80,7 @@ class ProcessListScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                _processController.myProcessList[index].company,
+                                _myProcessController.myProcess[index].company,
                                 style: const TextStyle(
                                   fontSize: 16,
                                 ),
@@ -92,8 +92,8 @@ class ProcessListScreen extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(right: 16),
                                     child: Text(
-                                      _processController
-                                          .myProcessList[index].process,
+                                      _myProcessController
+                                          .myProcess[index].process,
                                       textAlign: TextAlign.right,
                                       style: const TextStyle(
                                         color: Colors.black,
@@ -108,10 +108,12 @@ class ProcessListScreen extends StatelessWidget {
                           ),
                           Obx(
                             () => Visibility(
-                              visible: _processController.deleteMode.value,
+                              visible: _myProcessController.deleteMode.value,
                               child: IconButton(
                                 onPressed: () {
-                                  _processController.deleteMyProcess(index);
+                                  _myProcessController.deleteMyProcess(
+                                      _myProcessController
+                                          .myProcess[index].company);
                                 },
                                 icon: const Icon(
                                   Icons.remove_circle,

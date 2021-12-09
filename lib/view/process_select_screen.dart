@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:job_hanting_app/controller/my_process_controller.dart';
 import 'package:job_hanting_app/controller/process_controller.dart';
 
 class ProcessSelectScreen extends StatelessWidget {
+  final MyProcessController _myProcessController = Get.find();
   final ProcessController _processController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     final companyIndex = int.parse(Get.arguments);
-    final companyName = _processController.myProcessList[companyIndex].company;
+    final companyName = _myProcessController.myProcess[companyIndex].company;
     return Scaffold(
       appBar: AppBar(title: const Text("選考状況選択")),
       body: Column(
@@ -68,8 +70,10 @@ class ProcessSelectScreen extends StatelessWidget {
                 height: 52,
                 child: ElevatedButton(
                   onPressed: () {
-                    _processController.setProcess(companyIndex,
-                        int.parse(_processController.selectedProcess.value));
+                    _myProcessController.setProcess(
+                        companyName,
+                        _processController.processPattern[int.parse(
+                            _processController.selectedProcess.value)]);
                     Get.back();
                   },
                   child: const Text(

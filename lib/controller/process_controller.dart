@@ -1,18 +1,6 @@
 import 'package:get/get.dart';
 
-class ProcessPair {
-  String company, process;
-
-  ProcessPair({this.company = '', this.process = '未エントリー'});
-}
-
 class ProcessController extends GetxController {
-  var myProcessList = [
-    ProcessPair(company: "サイバーエージェント", process: "未エントリー"),
-    ProcessPair(company: "マネーフォワード", process: "一次選考通過"),
-    ProcessPair(company: "グリー", process: "二次選考通過"),
-  ].obs;
-
   var processPattern = [
     "未エントリー",
     "面談待ち",
@@ -33,24 +21,7 @@ class ProcessController extends GetxController {
     "内定/内々定",
     "お見送り"
   ];
-
   final selectedProcess = '0'.obs;
-
-  final deleteMode = false.obs;
-
-  void setCompany(company) =>
-      myProcessList.add(ProcessPair(company: company, process: "未エントリー"));
-
-  void setProcess(index, process) {
-    myProcessList.insert(
-        index,
-        ProcessPair(
-            company: myProcessList[index].company,
-            process: processPattern[process]));
-    myProcessList.removeAt(index + 1);
-  }
-
-  void deleteMyProcess(index) => myProcessList.removeAt(index);
 
   void handleRadio(value) => selectedProcess(value);
 }

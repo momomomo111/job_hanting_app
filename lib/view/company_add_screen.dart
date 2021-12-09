@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:job_hanting_app/controller/process_controller.dart';
+import 'package:job_hanting_app/controller/my_process_controller.dart';
 
 class CompanyAddScreen extends StatelessWidget {
-  final ProcessController _processController = Get.find();
+  final MyProcessController _myProcessController = Get.find();
   final _addCompanyController = TextEditingController();
 
   @override
@@ -43,7 +43,7 @@ class CompanyAddScreen extends StatelessWidget {
                 height: 52,
                 child: ElevatedButton(
                   onPressed: () {
-                    _processController.setCompany(_addCompanyController.text);
+                    _myProcessController.setCompany(_addCompanyController.text);
                     Get.back();
                   },
                   child: const Text(
