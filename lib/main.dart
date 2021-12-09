@@ -7,21 +7,15 @@ import 'package:job_hanting_app/google_services.dart';
 import 'package:job_hanting_app/view/company_add_screen.dart';
 import 'package:job_hanting_app/view/process_list_screen.dart';
 import 'package:job_hanting_app/view/process_select_screen.dart';
+import 'package:job_hanting_app/view/title_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  FirebaseApp firebase;
   try {
     if (GetPlatform.isWeb) {
-      firebase = await Firebase.initializeApp(options: googleService());
+      await Firebase.initializeApp(options: googleService());
     } else {
-      firebase = await Firebase.initializeApp();
-    }
-  } on FirebaseException catch (e) {
-    if (e.code == 'duplicate-app') {
-      firebase = Firebase.app();
-    } else {
-      rethrow;
+      await Firebase.initializeApp();
     }
   } catch (e) {
     rethrow;
@@ -36,7 +30,7 @@ void main() async {
     getPages: [
       GetPage(
           name: '/title',
-          page: () => Center(child: Text(firebase.name)),
+          page: () => TitleScreen(),
           binding: Bind()),
       // GetPage(name: '/title', page: () => TitleScreen(), binding: Bind()),
       GetPage(
