@@ -3,8 +3,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
 class FirestoreDb {
-  static Stream<List<MyProcessModel>> myProcessStream() {
+  static Stream<List<MyProcessModel>> myProcessStream(String name) {
     return firebaseFirestore
+        .collection('users')
+        .doc(name)
         .collection('list')
         .snapshots()
         .map((QuerySnapshot query) {
@@ -18,14 +20,21 @@ class FirestoreDb {
     });
   }
 
-  static addCompany(MyProcessModel myProcessModel) async {
-    await firebaseFirestore.collection('list').doc(myProcessModel.company).set({
+  static addCompany(MyProcessModel myProcessModel, String name) async {
+    await firebaseFirestore
+        .collection('users')
+        .doc(name)
+        .collection('list')
+        .doc(myProcessModel.company)
+        .set({
       'process': myProcessModel.process,
     });
   }
 
-  static updateProcess(MyProcessModel myProcessModel) async {
+  static updateProcess(MyProcessModel myProcessModel, String name) async {
     await firebaseFirestore
+        .collection('users')
+        .doc(name)
         .collection('list')
         .doc(myProcessModel.company)
         .update({
@@ -33,8 +42,13 @@ class FirestoreDb {
     });
   }
 
-  static deleteProcess(String company) async {
-    await firebaseFirestore.collection('list').doc(company).delete();
+  static deleteProcess(String company, String name) async {
+    await firebaseFirestore
+        .collection('users')
+        .doc(name)
+        .collection('list')
+        .doc(company)
+        .delete();
   }
 }
 

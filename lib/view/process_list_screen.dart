@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:job_hanting_app/controller/auth_controller.dart';
 import 'package:job_hanting_app/controller/my_process_controller.dart';
 import 'package:job_hanting_app/controller/user_controller.dart';
+import 'package:job_hanting_app/enum/user_type.dart';
 
 class ProcessListScreen extends StatelessWidget {
   final MyProcessController _myProcessController = Get.find();
   final UserController _userListController = Get.find();
+  final AuthController _authController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +16,7 @@ class ProcessListScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("選考企業一覧"),
         actions: <Widget>[
+          Text(_userListController.userName.value),
           Obx(
             () => Visibility(
               visible: !_myProcessController.deleteMode.value &&
@@ -38,6 +42,15 @@ class ProcessListScreen extends StatelessWidget {
                 icon: const Icon(
                   Icons.clear,
                 ),
+              ),
+            ),
+          ),
+          Visibility(
+            visible: _userListController.userType.value == UserType.student,
+            child: IconButton(
+              onPressed: _authController.signOut,
+              icon: const Icon(
+                Icons.logout_outlined,
               ),
             ),
           ),
