@@ -10,9 +10,23 @@ import 'package:job_hanting_app/view/process_select_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  var firebase = await Firebase.initializeApp(
-    options: googleService()
-  );
+  FirebaseApp firebase;
+  try {
+    if (GetPlatform.isWeb) {
+      firebase = await Firebase.initializeApp(options: googleService());
+    } else {
+      firebase = await Firebase.initializeApp();
+    }
+  } on FirebaseException catch (e) {
+    if (e.code == 'duplicate-app') {
+      firebase = Firebase.app();
+    } else {
+      rethrow;
+    }
+  } catch (e) {
+    rethrow;
+  }
+
   runApp(GetMaterialApp(
     theme: ThemeData(
       primarySwatch: Colors.purple,
