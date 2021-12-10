@@ -48,7 +48,7 @@ class TitleScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       _userController.setStudent();
-                      _authController.signInWithGoogle();
+                      Get.toNamed('/auth');
                     },
                     child: const Text(
                       "就活生の方はこちらから",

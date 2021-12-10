@@ -15,7 +15,7 @@ class AuthController extends GetxController {
 
   _setInitialScreen(User? user) {
     if (user == null) {
-      // Get.toNamed('/title', preventDuplicates: true);
+      Get.toNamed('/auth');
     } else {
       _userController.setName(user.displayName);
       Get.toNamed('/process-list');
@@ -25,7 +25,7 @@ class AuthController extends GetxController {
   _setInitialScreenGoogle(GoogleSignInAccount? googleSignInAccount) {
     print(googleSignInAccount);
     if (googleSignInAccount == null) {
-      // Get.toNamed('/title', preventDuplicates: true);
+      Get.toNamed('/auth');
     } else {
       _userController.setName(googleSignInAccount.displayName);
       Get.toNamed('/process-list');

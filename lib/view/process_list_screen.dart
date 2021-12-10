@@ -14,9 +14,8 @@ class ProcessListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("選考企業一覧"),
+        title: Text("${_userListController.userName.value}の選考状況"),
         actions: <Widget>[
-          Text(_userListController.userName.value),
           Obx(
             () => Visibility(
               visible: !_myProcessController.deleteMode.value &&

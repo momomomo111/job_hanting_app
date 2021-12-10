@@ -8,14 +8,26 @@ class AuthScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          primary: Colors.red,
+      appBar: AppBar(title: const Text("認証画面")),
+      body: Center(
+        child: SizedBox(
+          width: 200,
+          height: 52,
+          child: ElevatedButton(
+            onPressed: () {
+              _authController.signInWithGoogle();
+              Get.back();
+            },
+            child: const Text(
+              "Googleアカウントで\nサインイン / ログイン",
+              style: TextStyle(color: Colors.white),
+            ),
+            style: ElevatedButton.styleFrom(
+              primary: Colors.purple[800],
+              shape: const StadiumBorder(),
+            ),
+          ),
         ),
-        onPressed: () {
-          _authController.signInWithGoogle();
-        },
-        child: const Text("Sign In with Google"),
       ),
     );
   }
