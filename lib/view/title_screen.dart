@@ -14,7 +14,7 @@ class TitleScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             const Text(
-              "浅沼元晴の\n選考企業一覧",
+              "My就活状況共有アプリ",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 34),
             ),
@@ -23,6 +23,7 @@ class TitleScreen extends StatelessWidget {
               children: [
                 SizedBox(
                   width: 300,
+                  height: 52,
                   child: ElevatedButton(
                     onPressed: () {
                       _userController.setOther();
@@ -33,7 +34,7 @@ class TitleScreen extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.purple[800],
+                      primary: Theme.of(context).primaryColor,
                       shape: const StadiumBorder(),
                     ),
                   ),
@@ -43,6 +44,7 @@ class TitleScreen extends StatelessWidget {
                 ),
                 SizedBox(
                   width: 300,
+                  height: 52,
                   child: ElevatedButton(
                     onPressed: () {
                       _userController.setStudent();
@@ -53,7 +55,7 @@ class TitleScreen extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.purple[800],
+                      primary: Theme.of(context).primaryColor,
                       shape: const StadiumBorder(),
                     ),
                   ),

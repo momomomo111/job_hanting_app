@@ -51,7 +51,7 @@ class CompanyAddScreen extends StatelessWidget {
                     style: TextStyle(color: Colors.white),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.purple[800],
+                    primary: Theme.of(context).primaryColor,
                     shape: const StadiumBorder(),
                   ),
                 ),

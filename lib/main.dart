@@ -25,7 +25,8 @@ void main() async {
 
   runApp(GetMaterialApp(
     theme: ThemeData(
-      primarySwatch: Colors.purple,
+      primarySwatch: Colors.blue,
+      primaryColor: Colors.blueAccent,
       textTheme: GoogleFonts.mPlusRounded1cTextTheme(),
     ),
     initialRoute: '/title',

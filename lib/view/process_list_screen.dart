@@ -147,6 +147,7 @@ class ProcessListScreen extends StatelessWidget {
       floatingActionButton: Visibility(
         visible: _userController.userType.value == UserType.student,
         child: FloatingActionButton.large(
+          backgroundColor: Theme.of(context).primaryColor,
           onPressed: () {
             Get.toNamed('/company-add');
           },

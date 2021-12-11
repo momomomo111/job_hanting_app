@@ -15,7 +15,7 @@ class UserSelectScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           const Text(
-            "選考状況を知りたい名前\nを入力してください",
+            "選考状況を知りたい方の名前\nを入力してください",
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.black,
@@ -51,7 +51,7 @@ class UserSelectScreen extends StatelessWidget {
                     style: TextStyle(color: Colors.white),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.purple[800],
+                    primary: Theme.of(context).primaryColor,
                     shape: const StadiumBorder(),
                   ),
                 ),
