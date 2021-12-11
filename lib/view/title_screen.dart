@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:job_hanting_app/controller/user_controller.dart';
 
 class TitleScreen extends StatelessWidget {
+  final UserController _userController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,8 +25,8 @@ class TitleScreen extends StatelessWidget {
                   width: 300,
                   child: ElevatedButton(
                     onPressed: () {
-                      Get.find<UserController>().setOther();
-                      Get.toNamed('/process-list');
+                      _userController.setOther();
+                      Get.toNamed('/user-select');
                     },
                     child: const Text(
                       "閲覧する方はこちらから",
@@ -43,8 +45,8 @@ class TitleScreen extends StatelessWidget {
                   width: 300,
                   child: ElevatedButton(
                     onPressed: () {
-                      Get.find<UserController>().setStudent();
-                      Get.toNamed('/process-list');
+                      _userController.setStudent();
+                      Get.toNamed('/auth');
                     },
                     child: const Text(
                       "就活生の方はこちらから",
