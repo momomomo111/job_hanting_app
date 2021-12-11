@@ -10,8 +10,7 @@ class MyProcessController extends GetxController {
 
   final deleteMode = false.obs;
 
-  @override
-  void onReady() {
+  void readMyProcess() {
     myProcessList.bindStream(
         FirestoreDb.myProcessStream(_userController.userName.value));
   }

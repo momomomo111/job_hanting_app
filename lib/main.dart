@@ -9,6 +9,7 @@ import 'package:job_hanting_app/view/company_add_screen.dart';
 import 'package:job_hanting_app/view/process_list_screen.dart';
 import 'package:job_hanting_app/view/process_select_screen.dart';
 import 'package:job_hanting_app/view/title_screen.dart';
+import 'package:job_hanting_app/view/user_select_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +31,10 @@ void main() async {
     initialRoute: '/title',
     getPages: [
       GetPage(name: '/title', page: () => TitleScreen(), binding: Bind()),
+      GetPage(
+          name: '/user-select',
+          page: () => UserSelectScreen(),
+          binding: Bind()),
       GetPage(name: '/auth', page: () => AuthScreen(), binding: Bind()),
       GetPage(
           name: '/process-list',

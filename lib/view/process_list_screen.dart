@@ -7,19 +7,20 @@ import 'package:job_hanting_app/enum/user_type.dart';
 
 class ProcessListScreen extends StatelessWidget {
   final MyProcessController _myProcessController = Get.find();
-  final UserController _userListController = Get.find();
+  final UserController _userController = Get.find();
   final AuthController _authController = Get.find();
 
   @override
   Widget build(BuildContext context) {
+    _myProcessController.readMyProcess();
     return Scaffold(
       appBar: AppBar(
-        title: Text("${_userListController.userName.value}の選考状況"),
+        title: Text("${_userController.userName.value}の選考状況"),
         actions: <Widget>[
           Obx(
             () => Visibility(
               visible: !_myProcessController.deleteMode.value &&
-                  _userListController.userType.value == UserType.student,
+                  _userController.userType.value == UserType.student,
               child: IconButton(
                 onPressed: () {
                   _myProcessController.deleteMode.value = true;
@@ -33,7 +34,7 @@ class ProcessListScreen extends StatelessWidget {
           Obx(
             () => Visibility(
               visible: _myProcessController.deleteMode.value &&
-                  _userListController.userType.value == UserType.student,
+                  _userController.userType.value == UserType.student,
               child: IconButton(
                 onPressed: () {
                   _myProcessController.deleteMode.value = false;
@@ -45,7 +46,7 @@ class ProcessListScreen extends StatelessWidget {
             ),
           ),
           Visibility(
-            visible: _userListController.userType.value == UserType.student,
+            visible: _userController.userType.value == UserType.student,
             child: IconButton(
               onPressed: _authController.signOut,
               icon: const Icon(
@@ -65,7 +66,7 @@ class ProcessListScreen extends StatelessWidget {
                   const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
               child: InkWell(
                 onTap: () {
-                  if (_userListController.userType.value == UserType.student) {
+                  if (_userController.userType.value == UserType.student) {
                     Get.toNamed('/process-select', arguments: index.toString());
                   }
                 },
@@ -144,7 +145,7 @@ class ProcessListScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: Visibility(
-        visible: _userListController.userType.value == UserType.student,
+        visible: _userController.userType.value == UserType.student,
         child: FloatingActionButton.large(
           onPressed: () {
             Get.toNamed('/company-add');

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:job_hanting_app/controller/auth_controller.dart';
 import 'package:job_hanting_app/controller/user_controller.dart';
 
 class TitleScreen extends StatelessWidget {
-  final AuthController _authController = Get.find();
   final UserController _userController = Get.find();
 
   @override
@@ -28,7 +26,7 @@ class TitleScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       _userController.setOther();
-                      Get.toNamed('/process-list');
+                      Get.toNamed('/user-select');
                     },
                     child: const Text(
                       "閲覧する方はこちらから",
