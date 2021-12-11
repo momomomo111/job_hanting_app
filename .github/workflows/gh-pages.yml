@@ -25,13 +25,19 @@ jobs:
           flutter pub get
           
       - name: Build
-        run: flutter build web --dart-define=APIKEY=AIzaSyAA_GsHfgbMu12nCmmlrWnAf3qvDQXPA2Y\
-             --dart-define=AUTHDOMAIN=job-hunting-flutter.firebaseapp.com\
-             --dart-define=PROJECTID=job-hunting-flutter\
-             --dart-define=STORAGEBUCKET=job-hunting-flutter.appspot.com\
-             --dart-define=MESSAGINGSENDERID=680365407770\
-             --dart-define=APPID=1:680365407770:web:ccb454a8147107ca54dba3
-
+        env:
+          APIKEY: ${{ secrets.APIKEY }}
+          AUTHDOMAIN: ${{ secrets.AUTHDOMAIN }}
+          PROJECTID: ${{ secrets.PROJECTID }}
+          STORAGEBUCKET: ${{ secrets.STORAGEBUCKET }}
+          MESSAGINGSENDERID: ${{ secrets.MESSAGINGSENDERID }}
+          APPID: ${{ secrets.APPID }}
+        run: flutter build web --dart-define=APIKEY=$APIKEY\
+             --dart-define=AUTHDOMAIN=$AUTHDOMAIN\
+             --dart-define=PROJECTID=$PROJECTID\
+             --dart-define=STORAGEBUCKET=$STORAGEBUCKET\
+             --dart-define==MESSAGINGSENDERID=$MESSAGINGSENDERID\
+             --dart-define=APPID=$APPID
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
