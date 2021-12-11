@@ -25,7 +25,8 @@ jobs:
           flutter pub get
           
       - name: Build
-        run: flutter build web --dart-define=APIKEY=AIzaSyAA_GsHfgbMu12nCmmlrWnAf3qvDQXPA2Y\
+        run: flutter build web --base-href /https://momomomo111.github.io/job_hanting_app/\
+             --dart-define=APIKEY=AIzaSyAA_GsHfgbMu12nCmmlrWnAf3qvDQXPA2Y\
              --dart-define=AUTHDOMAIN=job-hunting-flutter.firebaseapp.com\
              --dart-define=PROJECTID=job-hunting-flutter\
              --dart-define=STORAGEBUCKET=job-hunting-flutter.appspot.com\
