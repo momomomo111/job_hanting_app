@@ -12,7 +12,7 @@ class AuthScreen extends StatelessWidget {
       body: Center(
         child: SizedBox(
           width: 200,
-          height: 52,
+          height: 80,
           child: ElevatedButton(
             onPressed: () {
               _authController.signInWithGoogle();
@@ -23,7 +23,7 @@ class AuthScreen extends StatelessWidget {
               style: TextStyle(color: Colors.white),
             ),
             style: ElevatedButton.styleFrom(
-              primary: Colors.purple[800],
+              primary: Theme.of(context).primaryColor,
               shape: const StadiumBorder(),
             ),
           ),

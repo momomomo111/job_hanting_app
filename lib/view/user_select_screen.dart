@@ -15,7 +15,7 @@ class UserSelectScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           const Text(
-            "選考状況を知りたい名前\nを入力してください",
+            "選考状況を知りたい方の名前\nを入力してください",
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.black,
@@ -32,6 +32,13 @@ class UserSelectScreen extends StatelessWidget {
                 hintText: "名前",
                 labelText: "名前",
               ),
+              autovalidateMode: AutovalidateMode.always,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return '名前が入力されていません';
+                }
+                return null;
+              },
             ),
           ),
           Align(
@@ -43,15 +50,17 @@ class UserSelectScreen extends StatelessWidget {
                 height: 52,
                 child: ElevatedButton(
                   onPressed: () {
-                    _userController.userName.value = _userSelectController.text;
-                    Get.toNamed("/process-list");
+                    _userController.userName(_userSelectController.text);
+                    if (_userSelectController.text.isNotEmpty) {
+                      Get.toNamed("/process-list");
+                    }
                   },
                   child: const Text(
                     "見に行く",
                     style: TextStyle(color: Colors.white),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.purple[800],
+                    primary: Theme.of(context).primaryColor,
                     shape: const StadiumBorder(),
                   ),
                 ),

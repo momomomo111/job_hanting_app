@@ -20,17 +20,9 @@ class ProcessSelectScreen extends StatelessWidget {
           const SizedBox(
             height: 40,
           ),
-          const Text(
-            "企業の選考状況を選択してください",
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          const SizedBox(
-            height: 32,
-          ),
           Text(
-            companyName,
+            "「$companyName」\nの選考状況を選択してください",
+            textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 16,
             ),
@@ -81,7 +73,7 @@ class ProcessSelectScreen extends StatelessWidget {
                     style: TextStyle(color: Colors.white),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.purple[800],
+                    primary: Theme.of(context).primaryColor,
                     shape: const StadiumBorder(),
                   ),
                 ),
