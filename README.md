@@ -1,16 +1,10 @@
 # job_hanting_app
 
-This is an application that visualizes the selection status of the selected companies.
+このアプリは就活の企業選考状況を共有できるアプリケーションです。
+就活生は企業名と選考状況を記入します。閲覧する方は選考状況を見たい方の選考状況が確認できます。
 
-## Getting Started
+## アプリ
 
-This project is a starting point for a Flutter application.
+https://momomomo111.github.io/job_hanting_app
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Powerd by 東北Tech道場
