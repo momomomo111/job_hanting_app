@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:job_hanting_app/controller/user_controller.dart';
-import 'package:job_hanting_app/view/title_screen.dart';
 
 class AuthController extends GetxController {
   final UserController _userController = Get.find();
@@ -14,7 +13,7 @@ class AuthController extends GetxController {
   GoogleSignIn googleSign = GoogleSignIn();
 
   _setInitialScreen(User? user) {
-    if (user == null) {
+    if (user == null || user.displayName == "") {
       Get.toNamed('/auth');
     } else {
       _userController.setName(user.displayName);
@@ -24,7 +23,7 @@ class AuthController extends GetxController {
 
   _setInitialScreenGoogle(GoogleSignInAccount? googleSignInAccount) {
     print(googleSignInAccount);
-    if (googleSignInAccount == null) {
+    if (googleSignInAccount == null || googleSignInAccount.displayName == "") {
       Get.toNamed('/auth');
     } else {
       _userController.setName(googleSignInAccount.displayName);
@@ -69,6 +68,6 @@ class AuthController extends GetxController {
 
   void signOut() async {
     await auth.signOut();
-    Get.offAll(TitleScreen());
+    Get.offAllNamed('/title');
   }
 }

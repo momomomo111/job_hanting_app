@@ -11,8 +11,10 @@ class MyProcessController extends GetxController {
   final deleteMode = false.obs;
 
   void readMyProcess() {
-    myProcessList.bindStream(
-        FirestoreDb.myProcessStream(_userController.userName.value));
+    if (_userController.userName.value != "") {
+      myProcessList.bindStream(
+          FirestoreDb.myProcessStream(_userController.userName.value));
+    }
   }
 
   void setCompany(company) => FirestoreDb.addCompany(
