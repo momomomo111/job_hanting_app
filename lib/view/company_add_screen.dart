@@ -32,6 +32,13 @@ class CompanyAddScreen extends StatelessWidget {
                 hintText: "企業名",
                 labelText: "企業名",
               ),
+              autovalidateMode: AutovalidateMode.always,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return '企業名が入力されていません';
+                }
+                return null;
+              },
             ),
           ),
           Align(
@@ -44,7 +51,9 @@ class CompanyAddScreen extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     _myProcessController.setCompany(_addCompanyController.text);
-                    Get.back();
+                    if (_addCompanyController.text.isNotEmpty) {
+                      Get.toNamed("/process-list");
+                    }
                   },
                   child: const Text(
                     "決定",

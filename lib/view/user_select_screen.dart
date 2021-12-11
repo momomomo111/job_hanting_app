@@ -32,6 +32,13 @@ class UserSelectScreen extends StatelessWidget {
                 hintText: "名前",
                 labelText: "名前",
               ),
+              autovalidateMode: AutovalidateMode.always,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return '名前が入力されていません';
+                }
+                return null;
+              },
             ),
           ),
           Align(
@@ -43,8 +50,10 @@ class UserSelectScreen extends StatelessWidget {
                 height: 52,
                 child: ElevatedButton(
                   onPressed: () {
-                    _userController.userName.value = _userSelectController.text;
-                    Get.toNamed("/process-list");
+                    _userController.userName(_userSelectController.text);
+                    if (_userSelectController.text.isNotEmpty) {
+                      Get.toNamed("/process-list");
+                    }
                   },
                   child: const Text(
                     "見に行く",
