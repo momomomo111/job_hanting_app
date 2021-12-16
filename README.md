@@ -5,6 +5,6 @@
 
 ## アプリ
 
-https://momomomo111.github.io/job_hanting_app
+https://job-hunting-flutter.web.app
 
 Powerd by 東北Tech道場
