@@ -21,31 +21,27 @@ class ProcessListScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("${_userController.userName.value}の選考状況"),
         actions: <Widget>[
-          Obx(
-            () => Visibility(
-              visible: !_myProcessController.deleteMode.value &&
-                  _userController.userType.value == UserType.student,
-              child: IconButton(
-                onPressed: () {
-                  _myProcessController.deleteMode.value = true;
-                },
-                icon: const Icon(
-                  Icons.delete,
-                ),
+          Visibility(
+            visible: !_myProcessController.deleteMode.value &&
+                _userController.userType.value == UserType.student,
+            child: IconButton(
+              onPressed: () {
+                _myProcessController.deleteMode.value = true;
+              },
+              icon: const Icon(
+                Icons.delete,
               ),
             ),
           ),
-          Obx(
-            () => Visibility(
-              visible: _myProcessController.deleteMode.value &&
-                  _userController.userType.value == UserType.student,
-              child: IconButton(
-                onPressed: () {
-                  _myProcessController.deleteMode.value = false;
-                },
-                icon: const Icon(
-                  Icons.clear,
-                ),
+          Visibility(
+            visible: _myProcessController.deleteMode.value &&
+                _userController.userType.value == UserType.student,
+            child: IconButton(
+              onPressed: () {
+                _myProcessController.deleteMode.value = false;
+              },
+              icon: const Icon(
+                Icons.clear,
               ),
             ),
           ),
@@ -61,91 +57,120 @@ class ProcessListScreen extends StatelessWidget {
         ],
       ),
       body: Obx(
-        () => ListView.builder(
-          shrinkWrap: true,
-          itemCount: _myProcessController.myProcess.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
-              child: InkWell(
-                onTap: () {
-                  if (_userController.userType.value == UserType.student) {
-                    Get.toNamed('/process-select', arguments: index.toString());
-                  }
-                },
-                child: Container(
-                  decoration: const BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black12,
-                        spreadRadius: 0.1,
-                        blurRadius: 10.0,
-                        offset: Offset(5, 5),
-                      ),
-                    ],
-                  ),
-                  width: double.infinity,
-                  height: 100,
-                  child: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                _myProcessController.myProcess[index].company,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                ),
-                              ),
-                              Align(
-                                alignment: Alignment.bottomRight,
-                                child: SizedBox(
-                                  // width: double.infinity,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(right: 16),
-                                    child: Text(
+        () => Column(
+          mainAxisAlignment: _myProcessController.myProcess.isEmpty
+              ? MainAxisAlignment.center
+              : MainAxisAlignment.start,
+          children: [
+            Visibility(
+              visible: _myProcessController.myProcess.isEmpty,
+              child: Center(
+                  child: Text(
+                _userController.userType.value == UserType.other
+                    ? "この方の選考状況は\n登録されていません"
+                    : "選考状況を登録しましょう",
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                ),
+              )),
+            ),
+            Visibility(
+              visible: _myProcessController.myProcess.isNotEmpty,
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: _myProcessController.myProcess.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 4.0, horizontal: 16.0),
+                    child: InkWell(
+                      onTap: () {
+                        if (_userController.userType.value ==
+                            UserType.student) {
+                          Get.toNamed('/process-select',
+                              arguments: index.toString());
+                        }
+                      },
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black12,
+                              spreadRadius: 0.1,
+                              blurRadius: 10.0,
+                              offset: Offset(5, 5),
+                            ),
+                          ],
+                        ),
+                        width: double.infinity,
+                        height: 100,
+                        child: Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
                                       _myProcessController
-                                          .myProcess[index].process,
-                                      textAlign: TextAlign.right,
+                                          .myProcess[index].company,
                                       style: const TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: SizedBox(
+                                        // width: double.infinity,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 16),
+                                          child: Text(
+                                            _myProcessController
+                                                .myProcess[index].process,
+                                            textAlign: TextAlign.right,
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Obx(
+                                  () => Visibility(
+                                    visible:
+                                        _myProcessController.deleteMode.value,
+                                    child: IconButton(
+                                      onPressed: () {
+                                        _myProcessController.deleteMyProcess(
+                                            _myProcessController
+                                                .myProcess[index].company);
+                                      },
+                                      icon: const Icon(
+                                        Icons.remove_circle,
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          Obx(
-                            () => Visibility(
-                              visible: _myProcessController.deleteMode.value,
-                              child: IconButton(
-                                onPressed: () {
-                                  _myProcessController.deleteMyProcess(
-                                      _myProcessController
-                                          .myProcess[index].company);
-                                },
-                                icon: const Icon(
-                                  Icons.remove_circle,
-                                ),
-                              ),
+                              ],
                             ),
                           ),
-                        ],
+                        ),
                       ),
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
-            );
-          },
+            ),
+          ],
         ),
       ),
       floatingActionButton: Visibility(
