@@ -20,12 +20,7 @@ jobs:
           flutter config --enable-web
           flutter pub get
       - name: Build
-        run: flutter build web --dart-define=APIKEY=${{ secrets.APIKEY }}\
-          --dart-define=AUTHDOMAIN=${{ secrets.AUTHDOMAIN }}\
-          --dart-define=PROJECTID=${{ secrets.PROJECTID }}\
-          --dart-define=STORAGEBUCKET=${{ secrets.STORAGEBUCKET }}\
-          --dart-define=MESSAGINGSENDERID=${{ secrets.MESSAGINGSENDERID }}\
-          --dart-define=APPID=${{ secrets.APPID }}
+        run: flutter build web --dart-define=APIKEY=${{ secrets.APIKEY }} --dart-define=AUTHDOMAIN=${{ secrets.AUTHDOMAIN }} --dart-define=PROJECTID=${{ secrets.PROJECTID }} --dart-define=STORAGEBUCKET=${{ secrets.STORAGEBUCKET }} --dart-define=MESSAGINGSENDERID=${{ secrets.MESSAGINGSENDERID }} --dart-define=APPID=${{ secrets.APPID }}
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
