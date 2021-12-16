@@ -24,7 +24,7 @@ jobs:
           --dart-define=AUTHDOMAIN=${{ secrets.AUTHDOMAIN }}\
           --dart-define=PROJECTID=${{ secrets.PROJECTID }}\
           --dart-define=STORAGEBUCKET=${{ secrets.STORAGEBUCKET }}\
-          --dart-define==MESSAGINGSENDERID=${{ secrets.MESSAGINGSENDERID }}\
+          --dart-define=MESSAGINGSENDERID=${{ secrets.MESSAGINGSENDERID }}\
           --dart-define=APPID=${{ secrets.APPID }}
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
