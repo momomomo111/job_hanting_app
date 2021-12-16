@@ -16,7 +16,6 @@ void main() async {
   try {
     if (GetPlatform.isWeb) {
       await Firebase.initializeApp(options: googleService());
-      print(googleService().toString());
     } else {
       await Firebase.initializeApp();
     }
