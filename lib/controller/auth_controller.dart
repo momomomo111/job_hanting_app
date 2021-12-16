@@ -17,16 +17,18 @@ class AuthController extends GetxController {
       Get.toNamed('/auth');
     } else {
       _userController.setName(user.displayName);
+      _userController.setMail(user.email);
       Get.toNamed('/process-list');
     }
   }
 
   _setInitialScreenGoogle(GoogleSignInAccount? googleSignInAccount) {
-    print(googleSignInAccount);
     if (googleSignInAccount == null || googleSignInAccount.displayName == "") {
       Get.toNamed('/auth');
     } else {
       _userController.setName(googleSignInAccount.displayName);
+      _userController.setMail(googleSignInAccount.email);
+
       Get.toNamed('/process-list');
     }
   }
@@ -40,6 +42,7 @@ class AuthController extends GetxController {
 
     googleSignInAccount.bindStream(googleSign.onCurrentUserChanged);
     ever(googleSignInAccount, _setInitialScreenGoogle);
+
     try {
       GoogleSignInAccount? googleSignInAccount = await googleSign.signIn();
 
