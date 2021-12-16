@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:job_hanting_app/controller/user_controller.dart';
 
 class UserSelectScreen extends StatelessWidget {
-  final UserController _userController = Get.find();
   final _userSelectController = TextEditingController();
   final _mailSelectController = TextEditingController();
 
@@ -74,11 +72,10 @@ class UserSelectScreen extends StatelessWidget {
                 height: 52,
                 child: ElevatedButton(
                   onPressed: () {
-                    _userController.userName(_userSelectController.text);
-                    _userController.userMail(_mailSelectController.text);
                     if (_userSelectController.text.isNotEmpty &&
                         _mailSelectController.text.isNotEmpty) {
-                      Get.toNamed("/process-list");
+                      Get.toNamed(
+                          "/process-list?name=${_userSelectController.text}&mail=${_mailSelectController.text}");
                     }
                   },
                   child: const Text(

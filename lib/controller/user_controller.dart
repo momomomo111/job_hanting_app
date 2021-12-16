@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:job_hanting_app/enum/user_type.dart';
 
 class UserController extends GetxController {
-  var userType = UserType.student.obs;
+  var userType = UserType.other.obs;
   var userName = "".obs;
   var userMail = "".obs;
 

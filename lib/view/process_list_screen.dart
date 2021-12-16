@@ -12,6 +12,10 @@ class ProcessListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var name = Get.parameters['name'];
+    var mail = Get.parameters['mail'];
+    _userController.userName(name);
+    _userController.userMail(mail);
     _myProcessController.readMyProcess();
     return Scaffold(
       appBar: AppBar(
