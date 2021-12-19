@@ -1,10 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:job_hanting_app/controller/user_controller.dart';
 
 class AuthController extends GetxController {
-  final UserController _userController = Get.find();
   late Rx<User?> firebaseUser;
 
   late Rx<GoogleSignInAccount?> googleSignInAccount;
@@ -13,23 +11,23 @@ class AuthController extends GetxController {
   GoogleSignIn googleSign = GoogleSignIn();
 
   _setInitialScreen(User? user) {
-    if (user == null || user.displayName == "") {
+    if (user == null || user.displayName == "" || user.email == "") {
       Get.toNamed('/auth');
     } else {
-      _userController.authUserName(user.displayName);
-      _userController.authUserMail(user.email);
-      Get.toNamed("/process-list?name=${user.displayName}&mail=${user.email}");
+      Get.toNamed("/process-list?name=${user.displayName}&mail=${user.email}",
+          arguments: true);
     }
   }
 
   _setInitialScreenGoogle(GoogleSignInAccount? googleSignInAccount) {
-    if (googleSignInAccount == null || googleSignInAccount.displayName == "") {
+    if (googleSignInAccount == null ||
+        googleSignInAccount.displayName == "" ||
+        googleSignInAccount.email == "") {
       Get.toNamed('/auth');
     } else {
-      _userController.authUserName(googleSignInAccount.displayName);
-      _userController.authUserMail(googleSignInAccount.email);
       Get.toNamed(
-          "/process-list?name=${googleSignInAccount.displayName}&mail=${googleSignInAccount.email}");
+          "/process-list?name=${googleSignInAccount.displayName}&mail=${googleSignInAccount.email}",
+          arguments: true);
     }
   }
 

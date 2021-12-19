@@ -14,10 +14,12 @@ class ProcessListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var name = Get.parameters['name'];
     var mail = Get.parameters['mail'];
+    var editable = Get.arguments == null ? false : true;
     _userController.userName(name);
     _userController.userMail(mail);
+
     _myProcessController.readMyProcess();
-    _userController.checkEditable();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(GetPlatform.isWeb
@@ -31,7 +33,7 @@ class ProcessListScreen extends StatelessWidget {
                 subject: "${_userController.userName.value}さんの企業選考状況です。"),
           ),
           Visibility(
-            visible: _userController.editable.value,
+            visible: editable,
             child: IconButton(
               onPressed: () {
                 _myProcessController.deleteMode.value =
@@ -47,7 +49,7 @@ class ProcessListScreen extends StatelessWidget {
             ),
           ),
           Visibility(
-            visible: _userController.editable.value,
+            visible: editable,
             child: IconButton(
               onPressed: _authController.signOut,
               icon: const Icon(
@@ -67,9 +69,7 @@ class ProcessListScreen extends StatelessWidget {
               visible: _myProcessController.myProcess.isEmpty,
               child: Center(
                   child: Text(
-                _userController.editable.value
-                    ? "選考状況を登録しましょう"
-                    : "この方の選考状況は\n登録されていません",
+                editable ? "選考状況を登録しましょう" : "この方の選考状況は\n登録されていません",
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -89,7 +89,7 @@ class ProcessListScreen extends StatelessWidget {
                           vertical: 4.0, horizontal: 16.0),
                       child: InkWell(
                         onTap: () {
-                          if (_userController.editable.value) {
+                          if (editable) {
                             Get.toNamed('/process-select',
                                 arguments: index.toString());
                           }
@@ -178,7 +178,7 @@ class ProcessListScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: Visibility(
-        visible: _userController.editable.value,
+        visible: editable,
         child: FloatingActionButton.large(
           backgroundColor: Theme.of(context).primaryColor,
           onPressed: () {
