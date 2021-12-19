@@ -35,22 +35,15 @@ class ProcessListScreen extends StatelessWidget {
                 _userController.userType.value == UserType.student,
             child: IconButton(
               onPressed: () {
-                _myProcessController.deleteMode.value = true;
+                _myProcessController.deleteMode.value =
+                    !_myProcessController.deleteMode.value;
               },
-              icon: const Icon(
-                Icons.delete,
-              ),
-            ),
-          ),
-          Visibility(
-            visible: _myProcessController.deleteMode.value &&
-                _userController.userType.value == UserType.student,
-            child: IconButton(
-              onPressed: () {
-                _myProcessController.deleteMode.value = false;
-              },
-              icon: const Icon(
-                Icons.clear,
+              icon: Obx(
+                () => Icon(
+                  _myProcessController.deleteMode.value
+                      ? Icons.clear
+                      : Icons.delete,
+                ),
               ),
             ),
           ),
