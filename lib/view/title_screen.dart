@@ -26,7 +26,6 @@ class TitleScreen extends StatelessWidget {
                   height: 52,
                   child: ElevatedButton(
                     onPressed: () {
-                      _userController.setOther();
                       Get.toNamed('/user-select');
                     },
                     child: const Text(
@@ -47,7 +46,6 @@ class TitleScreen extends StatelessWidget {
                   height: 52,
                   child: ElevatedButton(
                     onPressed: () {
-                      _userController.setStudent();
                       Get.toNamed('/auth');
                     },
                     child: const Text(

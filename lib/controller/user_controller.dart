@@ -1,16 +1,15 @@
 import 'package:get/get.dart';
-import 'package:job_hanting_app/enum/user_type.dart';
 
 class UserController extends GetxController {
-  var userType = UserType.other.obs;
+  var editable = true.obs;
   var userName = "".obs;
   var userMail = "".obs;
+  var authUserName = "".obs;
+  var authUserMail = "".obs;
 
-  void setStudent() => userType(UserType.student);
-
-  void setOther() => userType(UserType.other);
-
-  void setName(name) => userName(name);
-
-  void setMail(mail) => userMail(mail);
+  checkEditable() {
+    userName.value == authUserName.value && userMail.value == authUserMail.value
+        ? editable(true)
+        : editable(false);
+  }
 }

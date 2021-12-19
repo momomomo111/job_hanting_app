@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:job_hanting_app/controller/auth_controller.dart';
 import 'package:job_hanting_app/controller/my_process_controller.dart';
 import 'package:job_hanting_app/controller/user_controller.dart';
-import 'package:job_hanting_app/enum/user_type.dart';
 import 'package:share_plus/share_plus.dart';
 
 class ProcessListScreen extends StatelessWidget {
@@ -18,6 +17,7 @@ class ProcessListScreen extends StatelessWidget {
     _userController.userName(name);
     _userController.userMail(mail);
     _myProcessController.readMyProcess();
+    _userController.checkEditable();
     return Scaffold(
       appBar: AppBar(
         title: Text(GetPlatform.isWeb
@@ -31,8 +31,7 @@ class ProcessListScreen extends StatelessWidget {
                 subject: "${_userController.userName.value}さんの企業選考状況です。"),
           ),
           Visibility(
-            visible: !_myProcessController.deleteMode.value &&
-                _userController.userType.value == UserType.student,
+            visible: _userController.editable.value,
             child: IconButton(
               onPressed: () {
                 _myProcessController.deleteMode.value =
@@ -48,7 +47,7 @@ class ProcessListScreen extends StatelessWidget {
             ),
           ),
           Visibility(
-            visible: _userController.userType.value == UserType.student,
+            visible: _userController.editable.value,
             child: IconButton(
               onPressed: _authController.signOut,
               icon: const Icon(
@@ -68,9 +67,9 @@ class ProcessListScreen extends StatelessWidget {
               visible: _myProcessController.myProcess.isEmpty,
               child: Center(
                   child: Text(
-                _userController.userType.value == UserType.other
-                    ? "この方の選考状況は\n登録されていません"
-                    : "選考状況を登録しましょう",
+                _userController.editable.value
+                    ? "選考状況を登録しましょう"
+                    : "この方の選考状況は\n登録されていません",
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -90,8 +89,7 @@ class ProcessListScreen extends StatelessWidget {
                           vertical: 4.0, horizontal: 16.0),
                       child: InkWell(
                         onTap: () {
-                          if (_userController.userType.value ==
-                              UserType.student) {
+                          if (_userController.editable.value) {
                             Get.toNamed('/process-select',
                                 arguments: index.toString());
                           }
@@ -180,7 +178,7 @@ class ProcessListScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: Visibility(
-        visible: _userController.userType.value == UserType.student,
+        visible: _userController.editable.value,
         child: FloatingActionButton.large(
           backgroundColor: Theme.of(context).primaryColor,
           onPressed: () {
