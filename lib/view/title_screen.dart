@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:job_hanting_app/controller/user_controller.dart';
 
 class TitleScreen extends StatelessWidget {
-  final UserController _userController = Get.find();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
