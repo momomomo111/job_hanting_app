@@ -200,9 +200,4 @@ class ProcessListScreen extends StatelessWidget {
       ),
     );
   }
-
-// _onShare(BuildContext context) async {
-//     await Share.share("共有するテキスト");
-//   }
-
 }
