@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 class ProcessController extends GetxController {
-  var processPattern = [
+  final processPattern = [
     "未エントリー",
     "面談待ち",
     "書類選考中",
@@ -16,6 +16,9 @@ class ProcessController extends GetxController {
     "三次面接待ち",
     "三次面接結果待ち",
     "三次面接通過",
+    "四次面接待ち",
+    "四次面接結果待ち",
+    "四次面接通過",
     "最終面接待ち",
     "最終面接結果待ち",
     "内定/内々定",
