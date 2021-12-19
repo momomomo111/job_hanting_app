@@ -78,96 +78,100 @@ class ProcessListScreen extends StatelessWidget {
             ),
             Visibility(
               visible: _myProcessController.myProcess.isNotEmpty,
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: _myProcessController.myProcess.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 4.0, horizontal: 16.0),
-                    child: InkWell(
-                      onTap: () {
-                        if (_userController.userType.value ==
-                            UserType.student) {
-                          Get.toNamed('/process-select',
-                              arguments: index.toString());
-                        }
-                      },
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black12,
-                              spreadRadius: 0.1,
-                              blurRadius: 10.0,
-                              offset: Offset(5, 5),
-                            ),
-                          ],
-                        ),
-                        width: double.infinity,
-                        height: 100,
-                        child: Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      _myProcessController
-                                          .myProcess[index].company,
-                                      style: const TextStyle(
-                                        fontSize: 16,
+              child: Flexible(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: _myProcessController.myProcess.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 4.0, horizontal: 16.0),
+                      child: InkWell(
+                        onTap: () {
+                          if (_userController.userType.value ==
+                              UserType.student) {
+                            Get.toNamed('/process-select',
+                                arguments: index.toString());
+                          }
+                        },
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                spreadRadius: 0.1,
+                                blurRadius: 10.0,
+                                offset: Offset(5, 5),
+                              ),
+                            ],
+                          ),
+                          width: double.infinity,
+                          height: 100,
+                          child: Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        _myProcessController
+                                            .myProcess[index].company,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
                                       ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment.bottomRight,
-                                      child: SizedBox(
-                                        // width: double.infinity,
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(right: 16),
-                                          child: Text(
-                                            _myProcessController
-                                                .myProcess[index].process,
-                                            textAlign: TextAlign.right,
-                                            style: const TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w500,
+                                      Align(
+                                        alignment: Alignment.bottomRight,
+                                        child: SizedBox(
+                                          // width: double.infinity,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 16),
+                                            child: Text(
+                                              _myProcessController
+                                                  .myProcess[index].process,
+                                              textAlign: TextAlign.right,
+                                              style: const TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w500,
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                Obx(
-                                  () => Visibility(
-                                    visible:
-                                        _myProcessController.deleteMode.value,
-                                    child: IconButton(
-                                      onPressed: () {
-                                        _myProcessController.deleteMyProcess(
-                                            _myProcessController
-                                                .myProcess[index].company);
-                                      },
-                                      icon: const Icon(
-                                        Icons.remove_circle,
+                                    ],
+                                  ),
+                                  Obx(
+                                    () => Visibility(
+                                      visible:
+                                          _myProcessController.deleteMode.value,
+                                      child: IconButton(
+                                        onPressed: () {
+                                          _myProcessController.deleteMyProcess(
+                                              _myProcessController
+                                                  .myProcess[index].company);
+                                        },
+                                        icon: const Icon(
+                                          Icons.remove_circle,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
             ),
           ],
