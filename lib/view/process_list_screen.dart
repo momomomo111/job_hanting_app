@@ -4,6 +4,7 @@ import 'package:job_hanting_app/controller/auth_controller.dart';
 import 'package:job_hanting_app/controller/my_process_controller.dart';
 import 'package:job_hanting_app/controller/user_controller.dart';
 import 'package:job_hanting_app/enum/user_type.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ProcessListScreen extends StatelessWidget {
   final MyProcessController _myProcessController = Get.find();
@@ -19,8 +20,16 @@ class ProcessListScreen extends StatelessWidget {
     _myProcessController.readMyProcess();
     return Scaffold(
       appBar: AppBar(
-        title: Text("${_userController.userName.value}の選考状況"),
+        title: Text(GetPlatform.isWeb
+            ? "${_userController.userName.value}さんの選考状況"
+            : "${_userController.userName.value}さん"),
         actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.share),
+            onPressed: () => Share.share(
+                "https://job-hunting-flutter.web.app/#/process-list?name=${_userController.userName.value}&mail=${_userController.userMail.value}",
+                subject: "${_userController.userName.value}さんの企業選考状況です。"),
+          ),
           Visibility(
             visible: !_myProcessController.deleteMode.value &&
                 _userController.userType.value == UserType.student,
@@ -191,4 +200,9 @@ class ProcessListScreen extends StatelessWidget {
       ),
     );
   }
+
+// _onShare(BuildContext context) async {
+//     await Share.share("共有するテキスト");
+//   }
+
 }
