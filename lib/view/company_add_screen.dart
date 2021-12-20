@@ -52,7 +52,7 @@ class CompanyAddScreen extends StatelessWidget {
                   onPressed: () {
                     _myProcessController.setCompany(_addCompanyController.text);
                     if (_addCompanyController.text.isNotEmpty) {
-                      Get.toNamed("/process-list");
+                      Get.back();
                     }
                   },
                   child: const Text(
