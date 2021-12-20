@@ -32,7 +32,6 @@ class ProcessSelectScreen extends StatelessWidget {
           ),
           Expanded(
             child: ListView.builder(
-              shrinkWrap: true,
               itemCount: _processController.processPattern.length,
               itemBuilder: (BuildContext context, int index) {
                 return Obx(
