@@ -81,7 +81,6 @@ class ProcessListScreen extends StatelessWidget {
               visible: _myProcessController.myProcess.isNotEmpty,
               child: Flexible(
                 child: ListView.builder(
-                  shrinkWrap: true,
                   itemCount: _myProcessController.myProcess.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
