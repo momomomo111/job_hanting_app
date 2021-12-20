@@ -9,6 +9,18 @@ class MyProcessController extends GetxController {
   List<MyProcessModel> get myProcess => myProcessList.value;
 
   final deleteMode = false.obs;
+  final loadingList = true.obs;
+
+  @override
+  void onReady() {
+    super.onReady();
+    loadingWait();
+  }
+
+  Future<void> loadingWait() async {
+    await Future.delayed(const Duration(seconds: 3));
+    loadingList(false);
+  }
 
   void readMyProcess() {
     if (_userController.userMail.value != "" &&

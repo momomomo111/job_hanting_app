@@ -66,18 +66,6 @@ class ProcessListScreen extends StatelessWidget {
               : MainAxisAlignment.start,
           children: [
             Visibility(
-              visible: _myProcessController.myProcess.isEmpty,
-              child: Center(
-                  child: Text(
-                editable ? "選考状況を登録しましょう" : "この方の選考状況は\n登録されていません",
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                ),
-              )),
-            ),
-            Visibility(
               visible: _myProcessController.myProcess.isNotEmpty,
               child: Flexible(
                 child: ListView.builder(
@@ -173,6 +161,24 @@ class ProcessListScreen extends StatelessWidget {
                 ),
               ),
             ),
+            Visibility(
+              visible: _myProcessController.myProcess.isEmpty &&
+                  !_myProcessController.loadingList.value,
+              child: Center(
+                child: Text(
+                  editable ? "選考状況を登録しましょう" : "この方の選考状況は\n登録されていません",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+            Visibility(
+                visible: _myProcessController.myProcess.isEmpty &&
+                    _myProcessController.loadingList.value,
+                child: const Center(child: CircularProgressIndicator())),
           ],
         ),
       ),
