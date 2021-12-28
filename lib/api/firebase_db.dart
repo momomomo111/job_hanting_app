@@ -2,6 +2,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
+// void deleteDocumentRecursively(docRef) async {
+//   var collections = await docRef.listCollections();
+//
+//   if (collections.length > 0) {
+//     for (collection in collections) {
+//       snapshot = await collection.get();
+//       for (doc in snapshot.docs) {
+//         await deleteDocumentRecursively(doc.ref);
+//       }
+//     }
+//   }
+//   await docRef.delete();
+// }
+
 class FirestoreDb {
   static Stream<List<MyProcessModel>> myProcessStream(
       String mail, String name) {
@@ -52,6 +66,20 @@ class FirestoreDb {
         .collection(name)
         .doc(company)
         .delete();
+  }
+
+  static deleteAccount(String mail, String name) async {
+    // await firebaseFirestore
+    //     .collection('users')
+    //     .doc(mail)
+    //     .collection(name)
+    //     .get()
+    //     .asStream()
+    //     .forEach((element) {
+    //   element.docs.forEach((element) {
+    //     element.toString();
+    //   });
+    // });
   }
 }
 

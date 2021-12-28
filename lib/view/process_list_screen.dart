@@ -52,7 +52,48 @@ class ProcessListScreen extends StatelessWidget {
           Visibility(
             visible: editable,
             child: IconButton(
-              onPressed: _authController.signOut,
+              onPressed: () {
+                Get.defaultDialog(
+                  title: "選択してください",
+                  middleText: "",
+                  content: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                          onPressed: _authController.signOut,
+                          child: Text(
+                            "ログアウト",
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.white,
+                            shape: StadiumBorder(
+                              side: BorderSide(
+                                  color: Theme.of(context).primaryColor),
+                            ),
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            _myProcessController.deleteAccount();
+                          },
+                          child: const Text(
+                            "アカウント削除",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary: Theme.of(context).primaryColor,
+                            shape: const StadiumBorder(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+              // onPressed: _authController.signOut,
               icon: const Icon(
                 Icons.logout_outlined,
               ),

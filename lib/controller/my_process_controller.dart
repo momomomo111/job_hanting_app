@@ -42,4 +42,10 @@ class MyProcessController extends GetxController {
 
   void deleteMyProcess(company) => FirestoreDb.deleteProcess(
       company, _userController.userMail.value, _userController.userName.value);
+
+  void deleteAccount() {
+    FirestoreDb.deleteAccount(
+        _userController.userMail.value, _userController.userName.value);
+    Get.offAllNamed('/title');
+  }
 }
