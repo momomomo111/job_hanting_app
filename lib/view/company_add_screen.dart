@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:job_hanting_app/controller/my_process_controller.dart';
 
 class CompanyAddScreen extends StatelessWidget {
+  CompanyAddScreen({Key? key}) : super(key: key);
   final MyProcessController _myProcessController = Get.find();
   final _addCompanyController = TextEditingController();
 

@@ -4,6 +4,7 @@ import 'package:job_hanting_app/controller/my_process_controller.dart';
 import 'package:job_hanting_app/controller/process_controller.dart';
 
 class ProcessSelectScreen extends StatelessWidget {
+  ProcessSelectScreen({Key? key}) : super(key: key);
   final MyProcessController _myProcessController = Get.find();
   final ProcessController _processController = Get.find();
 

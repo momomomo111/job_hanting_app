@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class UserSelectScreen extends StatelessWidget {
+  UserSelectScreen({Key? key}) : super(key: key);
   final _userSelectController = TextEditingController();
   final _mailSelectController = TextEditingController();
 

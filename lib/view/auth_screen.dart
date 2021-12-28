@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:job_hanting_app/controller/auth_controller.dart';
 
 class AuthScreen extends StatelessWidget {
+  AuthScreen({Key? key}) : super(key: key);
   final AuthController _authController = Get.find();
 
   @override

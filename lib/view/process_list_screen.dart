@@ -6,6 +6,7 @@ import 'package:job_hanting_app/controller/user_controller.dart';
 import 'package:share_plus/share_plus.dart';
 
 class ProcessListScreen extends StatelessWidget {
+  ProcessListScreen({Key? key}) : super(key: key);
   final MyProcessController _myProcessController = Get.find();
   final UserController _userController = Get.find();
   final AuthController _authController = Get.find();
