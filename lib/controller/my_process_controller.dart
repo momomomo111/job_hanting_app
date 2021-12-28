@@ -18,7 +18,7 @@ class MyProcessController extends GetxController {
   }
 
   Future<void> loadingWait() async {
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 10));
     loadingList(false);
   }
 
