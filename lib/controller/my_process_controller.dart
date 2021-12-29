@@ -11,23 +11,14 @@ class MyProcessController extends GetxController {
   final deleteMode = false.obs;
   final loadingList = true.obs;
 
-  @override
-  void onReady() {
-    super.onReady();
-    loadingWait();
-  }
-
-  Future<void> loadingWait() async {
-    await Future.delayed(const Duration(seconds: 10));
-    loadingList(false);
-  }
-
-  void readMyProcess() {
+  void readMyProcess() async {
     if (_userController.userMail.value != "" &&
         _userController.userName.value != "") {
       myProcessList.bindStream(FirestoreDb.myProcessStream(
           _userController.userMail.value, _userController.userName.value));
     }
+    await Future.delayed(const Duration(seconds: 4));
+    loadingList(false);
   }
 
   void setCompany(company) => FirestoreDb.addCompany(
