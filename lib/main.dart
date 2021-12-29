@@ -23,32 +23,35 @@ void main() async {
     rethrow;
   }
 
-  runApp(GetMaterialApp(
-    theme: ThemeData(
-      primarySwatch: Colors.blue,
-      primaryColor: Colors.blueAccent,
-      textTheme: GoogleFonts.mPlusRounded1cTextTheme(),
+  runApp(
+    GetMaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        primaryColor: Colors.blueAccent,
+        textTheme: GoogleFonts.mPlusRounded1cTextTheme(),
+      ),
+      initialRoute: '/title',
+      getPages: [
+        GetPage(
+            name: '/title', page: () => const TitleScreen(), binding: Bind()),
+        GetPage(
+            name: '/user-select',
+            page: () => UserSelectScreen(),
+            binding: Bind()),
+        GetPage(name: '/auth', page: () => AuthScreen(), binding: Bind()),
+        GetPage(
+            name: '/process-list',
+            page: () => ProcessListScreen(),
+            binding: Bind()),
+        GetPage(
+            name: '/process-select',
+            page: () => ProcessSelectScreen(),
+            binding: Bind()),
+        GetPage(
+            name: '/company-add',
+            page: () => CompanyAddScreen(),
+            binding: Bind()),
+      ],
     ),
-    initialRoute: '/title',
-    getPages: [
-      GetPage(name: '/title', page: () => TitleScreen(), binding: Bind()),
-      GetPage(
-          name: '/user-select',
-          page: () => UserSelectScreen(),
-          binding: Bind()),
-      GetPage(name: '/auth', page: () => AuthScreen(), binding: Bind()),
-      GetPage(
-          name: '/process-list',
-          page: () => ProcessListScreen(),
-          binding: Bind()),
-      GetPage(
-          name: '/process-select',
-          page: () => ProcessSelectScreen(),
-          binding: Bind()),
-      GetPage(
-          name: '/company-add',
-          page: () => CompanyAddScreen(),
-          binding: Bind()),
-    ],
-  ));
+  );
 }

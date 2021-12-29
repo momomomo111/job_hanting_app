@@ -53,6 +53,20 @@ class FirestoreDb {
         .doc(company)
         .delete();
   }
+
+  static deleteAccount(String mail, String name) async {
+    await firebaseFirestore
+        .collection('users')
+        .doc(mail)
+        .collection(name)
+        .get()
+        .asStream()
+        .forEach((element) {
+      for (var element in element.docs) {
+        element.reference.delete();
+      }
+    });
+  }
 }
 
 class MyProcessModel {

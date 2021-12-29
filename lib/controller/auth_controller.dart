@@ -45,8 +45,8 @@ class AuthController extends GetxController {
       await googleSign.signIn();
     } catch (e) {
       Get.snackbar(
-        "Error",
-        e.toString(),
+        "エラー",
+        "認証時にエラーが発生しました。",
         snackPosition: SnackPosition.BOTTOM,
       );
     }
