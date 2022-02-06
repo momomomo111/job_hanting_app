@@ -7,4 +7,8 @@
 
 https://job-hunting-flutter.web.app
 
-Powerd by 東北Tech道場
+## プライバシーポリシー
+
+https://momomomo111.github.io/job_hanting_app/PrivacyPolicy/Japanese
+
+Powerd by 東北 Tech 道場
